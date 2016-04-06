@@ -1,0 +1,81 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="jquery.countdown.min.js"></script>
+
+    <script>
+      var num = 1;
+      var float = 1.0;
+      var string = "1";
+      var array = [1,2,3,4];
+      var hash = {
+        "1": "One",
+        "2": "Two",
+        "3": "Three",
+        "4": "Four"
+      };
+
+    </script>
+
+    <script>
+      $(function() {
+        $('#button').click(function (){
+          var detailInput = $('#detail');
+          var detailInputVal = detailInput.val();
+          var fact = {
+            "fact" : {
+              "details" : detailInputVal
+            }
+          };
+          $.post( "http://www.catfact.info/api/v1/facts.json", fact, function(data){ console.log( data );
+          });
+        });
+
+        $("h2").click(function(){
+          $.get( "http://www.catfact.info//api/v1/facts.json?page=1&per_page=3", function( data ) {
+              console.log(data);
+              $("h2").html(data.facts[0].details);
+          });
+        });
+      });
+    </script>
+    <h1 class="headline">Hello, world!</h1>
+    <h2 class="headline">Goodbye womp</h2>
+    <hr />
+    <input id="detail" />
+    <button id="button">Click me</button>
+    <hr />
+
+    <div id="getting-started"></div>
+    <script type="text/javascript">
+      $("#getting-started").countdown("2016/07/09", function(event) {
+        $(this).text(event.strftime('%D days %H:%M:%S'));
+      });
+    </script>
+  </body>
+</html>
+
+<!--
+  jQuery communicates with the DOM
+
+  JSON translates between ruby hashes and js objects
+
+  http AJAX get requests allows us to make http request to pull data from an external source and update the content on the page without doing a full page request, just grab info without changing original source
+
+  we know how to make http requests, which allows us to get or post info from external databases
+
+  use rails on the back end, which gets exposed as JSON, and then use javascript on the front-end to manipulate the JSON
+
+  jQuery plug-ins are like ruby gems
+
+  -->
+
+
+
+
+
+
+
+
